@@ -3,7 +3,7 @@
 
 // function calcRectangleArea(width, height) {
 //     if (typeof width !== 'number' || typeof height !== 'number' || isNaN(width) || isNaN(height)) {
-//       throw new Error('Параметри мають бути валідними числами!');
+//       throw new Error('Параметри мають бути числами!');
 //     }
 //     return width * height;
 //   }
@@ -98,7 +98,7 @@
 //   }
   
 //   function showUsers(ids) {
-//     const result = [];
+//     let result = [];
   
 //     for (const id of ids) {
 //       try {
