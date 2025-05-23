@@ -82,16 +82,16 @@
 
 // Task 7
 
-function checkLogin(login) {
-  const loginRegex = /^[A-Za-z][A-Za-z0-9\.]{1,9}$/;
-  const numberRegex = /\d+(\.\d+)?/g;
+// function checkLogin(login) {
+//   const loginRegex = /^[A-Za-z][A-Za-z0-9\.]{1,9}$/;
+//   const numberRegex = /\d+(\.\d+)?/g;
 
-  const isValid = loginRegex.test(login);
-  const numbers = login.match(numberRegex);
+//   const isValid = loginRegex.test(login);
+//   const numbers = login.match(numberRegex);
 
-  console.log(isValid);
-  console.log(numbers);
-}
+//   console.log(isValid);
+//   console.log(numbers);
+// }
 
-checkLogin('ee1.1ret3'); 
-checkLogin('ee1*1ret3'); 
+// checkLogin('ee1.1ret3'); 
+// checkLogin('ee1*1ret3'); 
