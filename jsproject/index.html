@@ -4,16 +4,63 @@
   <meta charset="UTF-8">
   <title>Snake Game</title>
   <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #score {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
     canvas {
       background: #000;
+      border: 2px solid #fff;
       display: block;
       margin: 0 auto;
-      border: 2px solid #fff;
+    }
+
+    #game-over {
+      display: none;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    #difficulty {
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
+  <h1>Snake Game 🐍</h1>
+
+  <div>
+    <label for="difficulty">Difficulty: </label>
+    <select id="difficulty">
+      <option value="200">Easy</option>
+      <option value="100" selected>Medium</option>
+      <option value="50">Hard</option>
+    </select>
+  </div>
+
+  <div id="score">Score: 0</div>
+
   <canvas id="game" width="400" height="400"></canvas>
+
+  <div id="game-over">
+    <h1>Game Over</h1>
+    <button id="restart-btn">Restart</button>
+  </div>
+
+ 
   <script src="script.js"></script>
 </body>
 </html>
