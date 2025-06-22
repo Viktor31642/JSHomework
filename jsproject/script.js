@@ -1,6 +1,8 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
+const startMenu = document.getElementById('start-menu');
+const startBtn = document.getElementById('start-btn');
 const gameOverScreen = document.getElementById('game-over');
 const restartBtn = document.getElementById('restart-btn');
 const scoreDisplay = document.getElementById('score');
@@ -9,20 +11,30 @@ const difficultySelect = document.getElementById('difficulty');
 const gridSize = 20;
 const tileCount = canvas.width / gridSize;
 
-let snake = [{ x: 10, y: 10 }];
-let food = { x: 15, y: 15 };
-let dx = 1;
-let dy = 0;
-let isGameOver = false;
-let score = 0;
+let snake;
+let food;
+let dx;
+let dy;
+let isGameOver;
+let score;
 
-let speed = Number(difficultySelect.value); // мс між оновленнями
+let speed = Number(difficultySelect.value);
 let lastRenderTime = 0;
 
-// Зміна швидкості при виборі рівня
 difficultySelect.addEventListener('change', () => {
   speed = Number(difficultySelect.value);
 });
+
+function initGame() {
+  snake = [{ x: 10, y: 10 }];
+  food = { x: 15, y: 15 };
+  dx = 1; // рух одразу вправо
+  dy = 0;
+  isGameOver = false;
+  score = 0;
+  scoreDisplay.textContent = 'Score: 0';
+  lastRenderTime = 0;
+}
 
 function main(currentTime) {
   if (isGameOver) return;
@@ -41,13 +53,11 @@ function main(currentTime) {
 function gameLoop() {
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
-  // Зіткнення зі стіною
   if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
     endGame();
     return;
   }
 
-  // Зіткнення із собою
   for (let i = 0; i < snake.length; i++) {
     if (head.x === snake[i].x && head.y === snake[i].y) {
       endGame();
@@ -97,20 +107,14 @@ document.addEventListener('keydown', e => {
   }
 });
 
-restartBtn.onclick = () => {
-  snake = [{ x: 10, y: 10 }];
-  dx = 1;
-  dy = 0;
-  food = {
-    x: Math.floor(Math.random() * tileCount),
-    y: Math.floor(Math.random() * tileCount)
-  };
-  isGameOver = false;
-  score = 0;
-  scoreDisplay.textContent = 'Score: 0';
-  gameOverScreen.style.display = 'none';
-  lastRenderTime = 0;
+startBtn.onclick = () => {
+  initGame();
+  startMenu.style.display = 'none';
   window.requestAnimationFrame(main);
 };
 
-window.requestAnimationFrame(main);
+restartBtn.onclick = () => {
+  initGame();
+  gameOverScreen.style.display = 'none';
+  window.requestAnimationFrame(main);
+};
